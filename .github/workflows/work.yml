@@ -1,0 +1,32 @@
+name: Work for mirror
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+      - hotfix
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Login Docker
+        run: echo ${{secrets.UCLOUD_DOCKER_PASSWORD}} | docker login uhub.service.ucloud.cn -u  ${{secrets.UCLOUD_DOCKER_USERNAME}} --password-stdin
+
+      - name: Build Docker Image
+        run: make docker_build
+
+      - name: Push Docker
+        run: make docker_push

@@ -1,0 +1,35 @@
+# Node.js dependencies
+node_modules/
+
+# Environment variables
+.env
+
+# Environment-specific variables
+.env.*
+
+# Logs
+*.log
+
+# Build output
+dist/
+build/
+
+# IDE/Editor files
+.vscode/
+.idea/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Compiled binary addons
+*.node
+
+# Cache directories
+.npm/
+.yarn/
+
+# Miscellaneous
+*.swp
+*.swo
+*.bak
